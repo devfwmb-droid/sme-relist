@@ -30,8 +30,8 @@ export async function POST(req: NextRequest) {
 
     const nomeArquivo = `relatorio_${new Date().toISOString().slice(0, 10)}.docx`;
 
-    // Criando NextResponse e setando Buffer nativo do docx packer
-    return new NextResponse(buffer, {
+    // Criando NextResponse e setando Buffer nativo (convertido para não quebrar tipagem no build)
+    return new NextResponse(buffer as unknown as BodyInit, {
       status: 200,
       headers: {
         'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
